@@ -8,3 +8,16 @@ before_install:
 script:
   #  - docker run ankur/docker-react npm run test -- --coverage
   - docker run -e CI=true docker-react npm run test
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "docker-daniel"
+  env: "Docker-daniel-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-557498678765"
+  bucket_path: "docker-daniel"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
